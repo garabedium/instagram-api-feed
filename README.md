@@ -1,2 +1,4 @@
-# instagram-api-feed
-jQuery Instagram API feed
+# jQuery Instagram API Feed
+
+## How to Run
+-
