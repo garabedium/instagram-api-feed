@@ -38,6 +38,9 @@ function ajaxCall(){
         },
     }
 
+    var view = {
+
+    }
 
 
 } ajaxCall();
