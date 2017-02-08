@@ -1,5 +1,5 @@
 
-//function instagramFeed(){
+function instagramFeed(){
 
     var model = {
         data: {
@@ -87,4 +87,4 @@
 
     control.init();
 
-//} instagramFeed();
+} instagramFeed();
