@@ -1,5 +1,5 @@
 
-function instagramFeed(){
+//function instagramFeed(){
 
     var model = {
         data: {
@@ -38,6 +38,7 @@ function instagramFeed(){
                     instagramResponse.forEach(function(el) {
                         media.push(el);
                     });
+                    control.makeThumbnails();
                 } else {
                     control.apiTimeout();
                 }
@@ -47,6 +48,21 @@ function instagramFeed(){
             });
 
         },
+        ThumbnailConstructor: function(image,likes,url){
+            this.image = image;
+            this.likes = likes;
+            this.url = url;
+        },
+        makeThumbnails: function(){
+            var media = model.data.media,
+                thumbnails = model.data.thumbnails;
+
+            if(media.length > 10){
+                media.forEach(function(el) {
+                    thumbnails.push( new control.ThumbnailConstructor(el.images.thumbnail.url,el.likes.count,el.link));
+                });
+            }
+        }
     }
 
     // var view = {
@@ -54,4 +70,4 @@ function instagramFeed(){
 
     control.init();
 
-} instagramFeed();
+// /} instagramFeed();
