@@ -7,7 +7,6 @@
             "thumbnails":[]
         }
     }
-
     var control = {
         init: function(){
             this.apiCall();
@@ -61,13 +60,31 @@
                 media.forEach(function(el) {
                     thumbnails.push( new control.ThumbnailConstructor(el.images.thumbnail.url,el.likes.count,el.link));
                 });
+                view.init();
             }
         }
     }
+    var view = {
+        init: function(){
+            this.showFeed();
+        },
+        showFeed: function(){
+            var feed = $('#instagram-feed'),
+                dataThumbnails = model.data.thumbnails,
+                feedLimit = 6,
+                listItem = '',
+                feedTemplate = '<li><a href="%url%" target="_blank"><img src="%image%">' +
+                '<span class="instagram-meta">%count%</span></a></li>';
 
-    // var view = {
-    // }
+            dataThumbnails.forEach(function(el,index) {
+                if (index < feedLimit){
+                    listItem = feedTemplate.replace("%image%", el.image).replace("%count%",el.likes).replace("%url%",el.url);
+                    feed.append(listItem);
+                }
+            });
+        }
+    }
 
     control.init();
 
-// /} instagramFeed();
+//} instagramFeed();
