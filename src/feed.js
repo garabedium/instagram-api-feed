@@ -1,5 +1,5 @@
 
-function ajaxCall(){
+function instagramFeed(){
 
     var model = {
         data: {
@@ -10,7 +10,14 @@ function ajaxCall(){
 
     var control = {
         init: function(){
-
+            this.apiCall();
+        },
+        apiTimeout: function(){
+            setTimeout(function() {
+                if(model.data.media.length < 10){
+                    console.log('error');
+                }
+            }, 5000);
         },
         apiCall: function(){
 
@@ -31,16 +38,20 @@ function ajaxCall(){
                     instagramResponse.forEach(function(el) {
                         media.push(el);
                     });
+                } else {
+                    control.apiTimeout();
                 }
 
+            }).fail(function(xhr,textStatus){
+                control.apiTimeout();
             });
 
         },
     }
 
-    var view = {
+    // var view = {
+    // }
 
-    }
+    control.init();
 
-
-} ajaxCall();
+} instagramFeed();
