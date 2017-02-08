@@ -14,14 +14,14 @@ function instagramFeed(){
         apiTimeout: function(){
             setTimeout(function() {
                 if(model.data.media.length < 10){
-                    console.log('error');
+                    view.showError();
                 }
             }, 5000);
         },
         apiCall: function(){
 
             var apiUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=',
-                apiToken = '-',
+                apiToken = '5129060.14ba9b1.a0fcb87320534f7fa8e2a6f9e4009483',
                 apiAjaxUrl = apiUrl + apiToken;
 
             $.ajax({
@@ -82,6 +82,10 @@ function instagramFeed(){
                     feed.append(listItem);
                 }
             });
+        },
+        showError: function(){
+            var errorMessage = $('#instagram-error');
+            errorMessage.html('Oops. Something went wrong.');
         }
     }
 
